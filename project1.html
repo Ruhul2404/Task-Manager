@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+      textarea {
+            font-size:large;
+        width: 100%;
+        height: 478px;
+        padding: 20px 20px;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        resize: none;
+        }
+body {
+    padding: 0;
+  margin: 0;
+  min-width: 250px;
+ 
+}
+* {
+  box-sizing: border-box;
+}
+ul {
+  margin: 0;
+  padding: 5px;
+}
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: rgb(195, 243, 118);
+  font-size: 20px;
+  transition: 0.4s;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul li:nth-child(odd) {
+  background: #8fee53;
+}
+ul li:hover {
+  background: #ddd;
+}
+ul li.checked {
+  background: rgb(203, 210, 2);
+  color: black;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: rgb(240, 13, 13);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: rgb(240, 13, 13);
+  color: white;
+}
+.header {
+  background-color: #68a013;
+  padding: 30px 40px;
+  color: black;
+  text-align: center;
+}
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #ede910;
+  color: black;
+  float: left;
+  font-style: bold;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #8fee53;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+.tabcontent {
+  color: black;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Home {background-color: #68a013;}
+#News {background-color: #68a013;}
+#Contact {background-color: #68a013;}
+#About {background-color: #68a013;}
+</style>
+</head>
+<body>
+<button class="tablink" onclick="openPage('Home', this, '#68a013')"id="defaultOpen">Task</button>
+<button class="tablink" onclick="openPage('News', this, '#68a013')">Important</button>
+<button class="tablink" onclick="openPage('Contact', this, '#68a013')">Groceries</button>
+<button class="tablink" onclick="openPage('About', this, '#68a013')">Notes</button>
+
+<div id="Home" class="tabcontent">
+    <div id="myDIV" class="header">
+        <h1 style="margin:10px">Task</h1>
+        <input type="text" id="myInput" placeholder="Add Task">
+        <span onclick="newElement()" class="addBtn">Add</span>
+     </div>
+      
+      <ul id="myUL">
+        <li>POW assignment by friday</li>
+        <li class="checked">Fill up KOSS selection form</li>
+        <li>Prepare for BEM test</li>
+        <li>Buy socks</li>
+        <li class="checked">Prepare for KOSS interview</li>
+        <li>Read 10 pages of any book</li>
+      </ul>
+    
+</div>
+
+<div id="News" class="tabcontent">
+    <div id="myDIV" class="header">
+        <h1 style="margin:10px">Important Task</h1>
+        <input type="text" id="myInput2" placeholder="Add Task">
+        <span onclick="newElement2()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL2">
+        <li>POW assignment by friday</li>
+        <li>Fill up KOSS selection form</li>
+        <li>Prepare for KOSS interview</li>
+      </ul>
+</div>
+
+<div id="Contact" class="tabcontent">
+    <div id="myDIV" class="header">
+        <h1 style="margin:10px">Grocery List</h1>
+        <input type="text" id="myInput3" placeholder="Add Task">
+        <span onclick="newElement3()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL3">
+        <li>Peanut Butter</li>
+        <li>Mix fruit jam</li>
+        <li>Eggs</li>
+        <li>Bread</li>
+        <li>Apple Juice</li>
+        <li>Coke</li>
+        <li>Choclate</li>
+      </ul>
+</div>
+
+<div id="About" class="tabcontent">
+    <div class="main">
+        <h1 style="margin:10px; color: black;">Notes</h1>
+        <form>
+            <textarea> </textarea>
+          </form>
+          
+    </div>
+</div>
+<footer style="text-align:left ; font-size:small;">
+    Self project by Ruhul Amin
+</footer>
+
+<script>
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value; 
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+function newElement2() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput2").value; 
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL2").appendChild(li);
+  }
+  document.getElementById("myInput2").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+function newElement3() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput3").value; 
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL3").appendChild(li);
+  }
+  document.getElementById("myInput3").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>
